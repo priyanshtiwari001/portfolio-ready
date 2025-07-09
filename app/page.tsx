@@ -488,26 +488,24 @@ const CallStackCard = ({ project, index, totalCards }: { project: any; index: nu
   })
 
   const y = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [100, 0, 0, -index * 15])
-
   const scale = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.9, 1, 1, 0.95 - index * 0.02])
-
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0.8])
-
   const zIndex = useTransform(scrollYProgress, [0, 0.8, 1], [index + 1, index + 1, totalCards + index])
 
   return (
-    <motion.div ref={cardRef} style={{ y, scale, opacity, zIndex }} className="sticky top-32 w-full">
+    <motion.div ref={cardRef} style={{ y, scale, opacity, zIndex }} className="sticky top-32 w-full px-4 sm:px-6">
       <motion.div
-        className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300"
+        className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-xl transition-shadow duration-300"
         whileHover={{ y: -5 }}
       >
-        <div className="grid lg:grid-cols-2 gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-center">
+          {/* Text section */}
           <div>
-            <div className="flex items-center gap-4 mb-6">
+            <div className="flex flex-wrap items-center gap-3 mb-4 sm:mb-6">
               <span className="text-sm font-mono text-gray-500 bg-gray-100 dark:bg-gray-800 px-3 py-1 rounded-full">
                 {project.year}
               </span>
-              <div className="flex gap-2">
+              <div className="flex flex-wrap gap-2">
                 {project.tags.map((tag: string, tagIndex: number) => (
                   <Badge key={tagIndex} variant="secondary" className="text-xs">
                     {tag}
@@ -516,33 +514,36 @@ const CallStackCard = ({ project, index, totalCards }: { project: any; index: nu
               </div>
             </div>
 
-            <h3 className="text-3xl md:text-4xl font-light mb-4 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-light mb-3 sm:mb-4 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
               {project.title}
             </h3>
 
-            <p className="text-gray-600 dark:text-gray-300 mb-8 text-lg leading-relaxed">{project.description}</p>
+            <p className="text-gray-600 dark:text-gray-300 mb-6 sm:mb-8 text-base sm:text-lg leading-relaxed">
+              {project.description}
+            </p>
 
-            <div className="flex gap-4">
-              <Link target="blank" href={project.demo}>
-              <MagneticButton className="flex items-center gap-2">
-                View Project
-                <ArrowUpRight className="w-4 h-4" />
-              </MagneticButton>
+            <div className="flex flex-wrap gap-4">
+              <Link target="_blank" href={project.demo}>
+                <MagneticButton className="flex items-center gap-2">
+                  View Project
+                  <ArrowUpRight className="w-4 h-4" />
+                </MagneticButton>
               </Link>
-              <Link target="blank" href={project.github}>
-              <MagneticButton variant="outline" className="flex items-center gap-2">
-                <Github className="w-4 h-4" />
-                Code
-              </MagneticButton>
+              <Link target="_blank" href={project.github}>
+                <MagneticButton variant="outline" className="flex items-center gap-2">
+                  <Github className="w-4 h-4" />
+                  Code
+                </MagneticButton>
               </Link>
             </div>
           </div>
 
-          <div className="relative">
+          {/* Image section */}
+          <div className="relative w-full">
             <motion.div
               whileHover={{ scale: 1.02, rotate: 1 }}
               transition={{ duration: 0.3 }}
-              className="aspect-[4/3] bg-white  dark:to-gray-700 rounded-xl overflow-hidden shadow-inner"
+              className="aspect-[4/3] bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-inner flex items-center justify-center"
             >
               <img
                 src={project.image || "/placeholder.svg"}
@@ -560,6 +561,7 @@ const CallStackCard = ({ project, index, totalCards }: { project: any; index: nu
     </motion.div>
   )
 }
+
 
 
 
@@ -788,7 +790,7 @@ export default function Portfolio() {
       </section>
 
       {/* Work Section */}
-      <section id="work" className="py-20 px-6 bg-gray-50 dark:bg-gray-800">
+      <section id="work" className="py-20 px-6">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
