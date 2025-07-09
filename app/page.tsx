@@ -646,7 +646,7 @@ export default function Portfolio() {
         "Walk you through the top React interview questions and answers, starting from the basics and progressing to advanced topics. By the end, you’ll have a solid understanding of what interviewers are looking for.",
       date: "Nov 28, 2024",
       readTime: "6 min read",
-      tags: ["CSS", "Responsive Design", "Layout"],
+      tags: ["React", "Interviews", "Questions"],
       link:"https://medium.com/@priyanshu108tiwari/react-interview-questions-you-must-know-as-a-web-developer-2025-edition-part-1-73edcc1d227d"
     },
   ]
