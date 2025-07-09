@@ -600,7 +600,7 @@ export default function Portfolio() {
     },
     {
       title: "AuthEase - NPM Package",
-      year: "2024",
+      year: "2025",
       description:
         "AuthEase is a full-featured, plug-and-play authentication solution for Node.js and React applications. Built from scratch with over 80+ NPM dependencies, it handles the complete auth lifecycle using JWT and secure route protection middleware",
       image: "/npm.png",
@@ -610,7 +610,7 @@ export default function Portfolio() {
     },
     {
       title: "Podcast Transcript",
-      year: "2024",
+      year: "2025",
       description:
         "A podcast management platform that allows users to organize their shows as projects, add and manage individual episodes, and write or edit episode transcripts. It provides a intuitive interface for handling podcast content.",
       image: "/podcast.png",
