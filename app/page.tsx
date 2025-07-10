@@ -752,8 +752,8 @@ export default function Portfolio() {
               transition={{ delay: 0.6 }}
               className="flex flex-col sm:flex-row gap-4 justify-center items-center"
             >
-              <CleanButton variant="accent" className="px-8 py-4 text-base" href="#work">
-                View My Work
+              <CleanButton target="blank" variant="accent" className="px-8 py-4 text-base" href="https://drive.google.com/file/d/1lp7KvSR_bxjKwHyMcbud9chJVNaaVopP/view?usp=drive_link">
+               Visit My Resume
               </CleanButton>
               <CleanButton variant="outline" className="px-8 py-4 text-base" href="#contact">
                 Let's Connect
@@ -880,7 +880,7 @@ export default function Portfolio() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
-                className="space-y-6 text-slate-600 dark:text-slate-400 leading-relaxed"
+                className="space-y-6 text-slate-700 dark:text-slate-400 leading-relaxed"
               >
                 <p>
                 Hi, I’m Priyanshu — a full-stack developer with a strong focus on frontend development. I have 3+ years of experience building modern, scalable web applications using React.js, Next.js, TypeScript, and Node.js. 
