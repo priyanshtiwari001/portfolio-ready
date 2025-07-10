@@ -752,7 +752,7 @@ export default function Portfolio() {
               transition={{ delay: 0.6 }}
               className="flex flex-col sm:flex-row gap-4 justify-center items-center"
             >
-              <CleanButton target="blank" variant="accent" className="px-8 py-4 text-base" href="https://drive.google.com/file/d/1lp7KvSR_bxjKwHyMcbud9chJVNaaVopP/view?usp=drive_link">
+              <CleanButton target="blank" variant="accent" className="px-8 py-4 text-base" href="https://drive.google.com/file/d/1rk5qMkHnK8VbF5THtTCyqd1La1kMtQWk/view?usp=drive_link">
                Visit My Resume
               </CleanButton>
               <CleanButton variant="outline" className="px-8 py-4 text-base" href="#contact">
@@ -863,7 +863,7 @@ export default function Portfolio() {
 
       {/* About Section */}
       <section id="about" className="py-20 px-6 relative z-10">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-6xl mx-auto ">
           <div className="grid lg:grid-cols-2 gap-16">
             <div>
               <motion.h2
@@ -880,7 +880,7 @@ export default function Portfolio() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
-                className="space-y-6 text-slate-700 dark:text-slate-400 leading-relaxed"
+                className="space-y-6 text-slate-600 dark:text-slate-300 leading-relaxed"
               >
                 <p>
                 Hi, I’m Priyanshu — a full-stack developer with a strong focus on frontend development. I have 3+ years of experience building modern, scalable web applications using React.js, Next.js, TypeScript, and Node.js. 
