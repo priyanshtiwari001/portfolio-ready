@@ -18,6 +18,9 @@ export const metadata: Metadata = {
     description: "Creating exceptional digital experiences",
     type: "website",
   },
+  icons:{
+    icon:'/logo.png'
+  }
 }
 
 export default function RootLayout({
