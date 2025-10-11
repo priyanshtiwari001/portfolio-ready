@@ -752,7 +752,7 @@ export default function Portfolio() {
               transition={{ delay: 0.6 }}
               className="flex flex-col sm:flex-row gap-4 justify-center items-center"
             >
-              <CleanButton target="blank" variant="accent" className="px-8 py-4 text-base" href="#work">
+              <CleanButton variant="accent" className="px-8 py-4 text-base" href="/#work">
                My Projects
               </CleanButton>
               <CleanButton variant="outline" className="px-8 py-4 text-base" href="#contact">
