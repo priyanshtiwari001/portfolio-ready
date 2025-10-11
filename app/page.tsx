@@ -258,68 +258,68 @@ const FloatingElements = () => {
 }
 
 // Theme Toggle Component
-const ThemeToggle = () => {
-  const [isDark, setIsDark] = useState(false)
+// const ThemeToggle = () => {
+//   const [isDark, setIsDark] = useState(false)
 
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme")
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches
+//   useEffect(() => {
+//     const savedTheme = localStorage.getItem("theme")
+//     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches
 
-    if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
-      setIsDark(true)
-      document.documentElement.classList.add("dark")
-    }
-  }, [])
+//     if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+//       setIsDark(true)
+//       document.documentElement.classList.add("dark")
+//     }
+//   }, [])
 
-  const toggleTheme = useCallback(() => {
-    const newTheme = !isDark
-    setIsDark(newTheme)
+//   const toggleTheme = useCallback(() => {
+//     const newTheme = !isDark
+//     setIsDark(newTheme)
 
-    if (newTheme) {
-      document.documentElement.classList.add("dark")
-      localStorage.setItem("theme", "dark")
-    } else {
-      document.documentElement.classList.remove("dark")
-      localStorage.setItem("theme", "light")
-    }
-  }, [isDark])
+//     if (newTheme) {
+//       document.documentElement.classList.add("dark")
+//       localStorage.setItem("theme", "dark")
+//     } else {
+//       document.documentElement.classList.remove("dark")
+//       localStorage.setItem("theme", "light")
+//     }
+//   }, [isDark])
 
-  return (
-    <motion.button
-      onClick={toggleTheme}
-      className="relative w-10 h-10 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center shadow-sm"
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-      transition={{ duration: 0.15 }}
-      data-magnetic
-      aria-label="Toggle theme"
-    >
-      <AnimatePresence mode="wait">
-        {isDark ? (
-          <motion.div
-            key="moon"
-            initial={{ rotate: -45, opacity: 0 }}
-            animate={{ rotate: 0, opacity: 1 }}
-            exit={{ rotate: 45, opacity: 0 }}
-            transition={{ duration: 0.2 }}
-          >
-            <Moon className="w-4 h-4 text-slate-600" />
-          </motion.div>
-        ) : (
-          <motion.div
-            key="sun"
-            initial={{ rotate: 45, opacity: 0 }}
-            animate={{ rotate: 0, opacity: 1 }}
-            exit={{ rotate: -45, opacity: 0 }}
-            transition={{ duration: 0.2 }}
-          >
-            <Sun className="w-4 h-4 text-slate-600" />
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.button>
-  )
-}
+//   return (
+//     <motion.button
+//       onClick={toggleTheme}
+//       className="relative w-10 h-10 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center shadow-sm"
+//       whileHover={{ scale: 1.05 }}
+//       whileTap={{ scale: 0.95 }}
+//       transition={{ duration: 0.15 }}
+//       data-magnetic
+//       aria-label="Toggle theme"
+//     >
+//       <AnimatePresence mode="wait">
+//         {isDark ? (
+//           <motion.div
+//             key="moon"
+//             initial={{ rotate: -45, opacity: 0 }}
+//             animate={{ rotate: 0, opacity: 1 }}
+//             exit={{ rotate: 45, opacity: 0 }}
+//             transition={{ duration: 0.2 }}
+//           >
+//             <Moon className="w-4 h-4 text-slate-600" />
+//           </motion.div>
+//         ) : (
+//           <motion.div
+//             key="sun"
+//             initial={{ rotate: 45, opacity: 0 }}
+//             animate={{ rotate: 0, opacity: 1 }}
+//             exit={{ rotate: -45, opacity: 0 }}
+//             transition={{ duration: 0.2 }}
+//           >
+//             <Sun className="w-4 h-4 text-slate-600" />
+//           </motion.div>
+//         )}
+//       </AnimatePresence>
+//     </motion.button>
+//   )
+// }
 
 // Clean Button Component
 const CleanButton = ({ children, className = "", variant = "default", href, ...props }: any) => {
@@ -701,7 +701,7 @@ export default function Portfolio() {
           </nav>
 
           <div className="flex items-center gap-4">
-            <ThemeToggle />
+            {/* <ThemeToggle /> */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -752,8 +752,8 @@ export default function Portfolio() {
               transition={{ delay: 0.6 }}
               className="flex flex-col sm:flex-row gap-4 justify-center items-center"
             >
-              <CleanButton target="blank" variant="accent" className="px-8 py-4 text-base" href="https://drive.google.com/file/d/1rk5qMkHnK8VbF5THtTCyqd1La1kMtQWk/view?usp=drive_link">
-               Visit My Resume
+              <CleanButton target="blank" variant="accent" className="px-8 py-4 text-base" href="#work">
+               My Projects
               </CleanButton>
               <CleanButton variant="outline" className="px-8 py-4 text-base" href="#contact">
                 Let's Connect
