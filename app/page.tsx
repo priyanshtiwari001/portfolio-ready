@@ -1,23 +1,8 @@
 "use client"
 
-import { useEffect, useRef, useState, useCallback } from "react"
-import { motion, AnimatePresence, useTransform, useScroll } from "framer-motion"
-import {
-  Github,
-  Linkedin,
-  Mail,
-  ArrowUpRight,
-  Sun,
-  Moon,
-  Calendar,
-  Clock,
-  ExternalLink,
-  Code,
-  Palette,
-  Database,
-  Globe,
-} from "lucide-react"
-import { Badge } from "../app/components/ui/badge"
+import { useEffect, useRef, useState } from "react"
+import { Github, Linkedin, Mail, ArrowUpRight, Calendar, Clock, Code, Palette, Database, Globe } from "lucide-react"
+import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 
 // Custom Cursor Component
@@ -68,30 +53,16 @@ const CustomCursor = () => {
 
   return (
     <>
-      <motion.div
-        className="fixed top-0 left-0 w-3 h-3 bg-slate-900 dark:bg-slate-100 rounded-full pointer-events-none z-50 mix-blend-difference"
-        animate={{
-          x: mousePosition.x - 6,
-          y: mousePosition.y - 6,
-          scale: isHovering ? 1.5 : 1,
-        }}
-        transition={{
-          type: "tween",
-          ease: "backOut",
-          duration: 0.15,
+      <div
+        className="fixed top-0 left-0 w-3 h-3 bg-slate-800 dark:bg-slate-100 rounded-full pointer-events-none z-50 mix-blend-difference transition-all duration-150"
+        style={{
+          transform: `translate(${mousePosition.x - 6}px, ${mousePosition.y - 6}px) scale(${isHovering ? 1.5 : 1})`,
         }}
       />
-      <motion.div
-        className="fixed top-0 left-0 w-8 h-8 border border-slate-400/30 rounded-full pointer-events-none z-40"
-        animate={{
-          x: mousePosition.x - 16,
-          y: mousePosition.y - 16,
-          scale: isHovering ? 1.2 : 1,
-        }}
-        transition={{
-          type: "tween",
-          ease: "backOut",
-          duration: 0.2,
+      <div
+        className="fixed top-0 left-0 w-8 h-8 border border-slate-400/30 rounded-full pointer-events-none z-40 transition-all duration-200"
+        style={{
+          transform: `translate(${mousePosition.x - 16}px, ${mousePosition.y - 16}px) scale(${isHovering ? 1.2 : 1})`,
         }}
       />
     </>
@@ -112,7 +83,6 @@ const HandDrawnIcons = {
       />
     </svg>
   ),
-
   Atom: () => (
     <svg width="50" height="50" viewBox="0 0 50 50" className="text-slate-600 dark:text-slate-400">
       <circle cx="25" cy="25" r="3" fill="currentColor" />
@@ -148,7 +118,6 @@ const HandDrawnIcons = {
       />
     </svg>
   ),
-
   CodeBlock: () => (
     <svg width="60" height="45" viewBox="0 0 60 45" className="text-slate-600 dark:text-slate-400">
       <rect x="5" y="5" width="50" height="35" rx="4" stroke="currentColor" strokeWidth="1.5" fill="none" />
@@ -163,7 +132,6 @@ const HandDrawnIcons = {
       />
     </svg>
   ),
-
   Lightbulb: () => (
     <svg width="40" height="55" viewBox="0 0 40 55" className="text-slate-600 dark:text-slate-400">
       <path
@@ -173,15 +141,8 @@ const HandDrawnIcons = {
         fill="none"
       />
       <path d="M15 45 L25 45 M17 50 L23 50" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-      <path
-        d="M20 2 L20 8 M32 8 L28 12 M38 20 L32 20 M32 32 L28 28 M8 8 L12 12 M2 20 L8 20 M8 32 L12 28"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
     </svg>
   ),
-
   Gear: () => (
     <svg width="50" height="50" viewBox="0 0 50 50" className="text-slate-600 dark:text-slate-400">
       <path
@@ -196,15 +157,8 @@ const HandDrawnIcons = {
         strokeWidth="1.5"
         fill="none"
       />
-      <path
-        d="M37 13 L32 16 L30 12 Z M37 37 L32 34 L30 38 Z M13 37 L18 34 L20 38 Z M13 13 L18 16 L20 12 Z"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        fill="none"
-      />
     </svg>
   ),
-
   Database: () => (
     <svg width="45" height="60" viewBox="0 0 45 60" className="text-slate-600 dark:text-slate-400">
       <ellipse cx="22.5" cy="12" rx="17" ry="7" stroke="currentColor" strokeWidth="1.5" fill="none" />
@@ -224,114 +178,52 @@ const HandDrawnIcons = {
 const FloatingElements = () => {
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
-      {/* Paper Plane - Top Left */}
-      <motion.div className="absolute top-20 left-16 animate-drift" style={{ animationDelay: "0s" }}>
+      <div className="absolute top-20 left-16 animate-drift">
         <HandDrawnIcons.PaperPlane />
-      </motion.div>
-
-      {/* Atom - Center Left */}
-      <motion.div className="absolute top-1/2 left-1/4 animate-float-gentle" style={{ animationDelay: "2s" }}>
+      </div>
+      <div className="absolute top-1/2 left-1/4 animate-float-gentle" style={{ animationDelay: "2s" }}>
         <HandDrawnIcons.Atom />
-      </motion.div>
-
-      {/* Code Block - Top Right */}
-      <motion.div className="absolute top-32 right-20 animate-drift" style={{ animationDelay: "1s" }}>
+      </div>
+      <div className="absolute top-32 right-20 animate-drift" style={{ animationDelay: "1s" }}>
         <HandDrawnIcons.CodeBlock />
-      </motion.div>
-
-      {/* Lightbulb - Bottom Left */}
-      <motion.div className="absolute bottom-32 left-20 animate-float-gentle" style={{ animationDelay: "3s" }}>
+      </div>
+      <div className="absolute bottom-32 left-20 animate-float-gentle" style={{ animationDelay: "3s" }}>
         <HandDrawnIcons.Lightbulb />
-      </motion.div>
-
-      {/* Gear - Bottom Right */}
-      <motion.div className="absolute bottom-40 right-1/4 animate-drift" style={{ animationDelay: "4s" }}>
+      </div>
+      <div className="absolute bottom-40 right-1/4 animate-drift" style={{ animationDelay: "4s" }}>
         <HandDrawnIcons.Gear />
-      </motion.div>
-
-      {/* Database - Center Right */}
-      <motion.div className="absolute top-2/3 right-16 animate-float-gentle" style={{ animationDelay: "1.5s" }}>
+      </div>
+      <div className="absolute top-2/3 right-16 animate-float-gentle" style={{ animationDelay: "1.5s" }}>
         <HandDrawnIcons.Database />
-      </motion.div>
+      </div>
     </div>
   )
 }
-
-// Theme Toggle Component
-// const ThemeToggle = () => {
-//   const [isDark, setIsDark] = useState(false)
-
-//   useEffect(() => {
-//     const savedTheme = localStorage.getItem("theme")
-//     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches
-
-//     if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
-//       setIsDark(true)
-//       document.documentElement.classList.add("dark")
-//     }
-//   }, [])
-
-//   const toggleTheme = useCallback(() => {
-//     const newTheme = !isDark
-//     setIsDark(newTheme)
-
-//     if (newTheme) {
-//       document.documentElement.classList.add("dark")
-//       localStorage.setItem("theme", "dark")
-//     } else {
-//       document.documentElement.classList.remove("dark")
-//       localStorage.setItem("theme", "light")
-//     }
-//   }, [isDark])
-
-//   return (
-//     <motion.button
-//       onClick={toggleTheme}
-//       className="relative w-10 h-10 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center shadow-sm"
-//       whileHover={{ scale: 1.05 }}
-//       whileTap={{ scale: 0.95 }}
-//       transition={{ duration: 0.15 }}
-//       data-magnetic
-//       aria-label="Toggle theme"
-//     >
-//       <AnimatePresence mode="wait">
-//         {isDark ? (
-//           <motion.div
-//             key="moon"
-//             initial={{ rotate: -45, opacity: 0 }}
-//             animate={{ rotate: 0, opacity: 1 }}
-//             exit={{ rotate: 45, opacity: 0 }}
-//             transition={{ duration: 0.2 }}
-//           >
-//             <Moon className="w-4 h-4 text-slate-600" />
-//           </motion.div>
-//         ) : (
-//           <motion.div
-//             key="sun"
-//             initial={{ rotate: 45, opacity: 0 }}
-//             animate={{ rotate: 0, opacity: 1 }}
-//             exit={{ rotate: -45, opacity: 0 }}
-//             transition={{ duration: 0.2 }}
-//           >
-//             <Sun className="w-4 h-4 text-slate-600" />
-//           </motion.div>
-//         )}
-//       </AnimatePresence>
-//     </motion.button>
-//   )
-// }
 
 // Clean Button Component
 const CleanButton = ({ children, className = "", variant = "default", href, ...props }: any) => {
   const ref = useRef<HTMLButtonElement>(null)
 
-  const variants:any = {
+  const variants: any = {
     default:
-      "bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-200 shadow-sm",
+      "bg-white/90 dark:bg-white text-black dark:text-black hover:bg-white dark:hover:bg-white shadow-lg dark:shadow-2xl",
     outline:
-      "border border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-900 dark:text-slate-100",
-    ghost: "hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300",
-    accent: "bg-green-300 hover:bg-green-400 text-slate-900 shadow-sm",
+      "border-2 border-white/40 dark:border-white/60 hover:border-white/60 dark:hover:border-white hover:bg-white/10 dark:hover:bg-white/5 text-white dark:text-white",
+    ghost: "hover:bg-white/10 dark:hover:bg-white/10 text-white dark:text-white",
+    accent: "bg-white dark:bg-white text-black dark:text-black shadow-lg hover:shadow-xl",
+    liquid: `
+  relative overflow-hidden
+  text-white dark:text-white
+  rounded-xl
+  bg-white/10 dark:bg-white/5
+  border border-white/20 dark:border-white/10
+  backdrop-blur-xl
+  transition-all duration-500
+  hover:shadow-[0_0_25px_rgba(255,255,255,0.2)]
+  hover:scale-[1.03]
+  liquid-bg
+`,
+
   }
 
   const Component = href ? "a" : "button"
@@ -349,8 +241,6 @@ const CleanButton = ({ children, className = "", variant = "default", href, ...p
   )
 }
 
-
-// Enhanced Magnetic Button Component
 const MagneticButton = ({ children, className = "", variant = "default", href, ...props }: any) => {
   const ref = useRef<HTMLButtonElement>(null)
   const [isHovered, setIsHovered] = useState(false)
@@ -389,7 +279,7 @@ const MagneticButton = ({ children, className = "", variant = "default", href, .
     }
   }, [])
 
-  const variants:any = {
+  const variants: any = {
     default:
       "bg-black dark:bg-white text-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-200 shadow-lg hover:shadow-xl",
     outline:
@@ -400,7 +290,7 @@ const MagneticButton = ({ children, className = "", variant = "default", href, .
   const Component = href ? "a" : "button"
 
   return (
-    <motion.div className="relative">
+    <div className="relative">
       <Component
         ref={ref}
         href={href}
@@ -408,52 +298,53 @@ const MagneticButton = ({ children, className = "", variant = "default", href, .
         data-magnetic
         {...props}
       >
-        {/* Ripple effect */}
-        <motion.div
-          className="absolute inset-0 bg-white/10 dark:bg-black/10 rounded-full"
-          initial={{ scale: 0, opacity: 0 }}
-          animate={isHovered ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
-          transition={{ duration: 0.3 }}
-        />
-
-        {/* Subtle glow */}
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-purple-400/10 to-blue-400/10 rounded-full blur-sm"
-          initial={{ opacity: 0 }}
-          animate={isHovered ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: 0.2 }}
-        />
-
         <span className="relative z-10 flex items-center gap-2">{children}</span>
       </Component>
-    </motion.div>
+    </div>
   )
 }
 
 // Article Card Component
 const ArticleCard = ({ article, index }: { article: any; index: number }) => {
+  const [isInView, setIsInView] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true)
+        }
+      },
+    )
+    if (ref.current) observer.observe(ref.current)
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <motion.article
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ delay: index * 0.1, duration: 0.4 }}
-      className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg p-6 hover:shadow-md transition-all duration-300"
+    <article
+      ref={ref}
+      className="bg-black/40 liquid-bg dark:bg-black/50 backdrop-blur-xl border border-white/20 dark:border-white/15 rounded-2xl p-6 hover:shadow-2xl transition-all duration-300 hover:scale-105"
+      style={{
+        opacity: isInView ? 1 : 0,
+        transform: isInView ? "translateY(0)" : "translateY(30px)",
+        transitionDelay: `${index * 0.1}s`,
+      }}
     >
       <div className="flex items-center gap-4 mb-4">
-        <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+        <div className="flex items-center gap-2 text-sm text-white/60 dark:text-white/50">
           <Calendar className="w-4 h-4" />
           {article.date}
         </div>
-        <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+        <div className="flex items-center gap-2 text-sm text-white/60 dark:text-white/50">
           <Clock className="w-4 h-4" />
           {article.readTime}
         </div>
       </div>
 
-      <h3 className="text-lg font-semibold mb-3 text-slate-900 dark:text-slate-100">{article.title}</h3>
+      <h3 className="text-xl font-black mb-3 text-white dark:text-white leading-tight">{article.title}</h3>
 
-      <p className="text-slate-600 dark:text-slate-400 mb-4 line-clamp-3">{article.excerpt}</p>
+      <p className="text-white/70 dark:text-white/60 mb-4 line-clamp-3 font-medium">{article.excerpt}</p>
 
       <div className="flex items-center justify-between">
         <div className="flex gap-2">
@@ -461,64 +352,77 @@ const ArticleCard = ({ article, index }: { article: any; index: number }) => {
             <Badge
               key={tagIndex}
               variant="outline"
-              className="text-xs border-slate-300 dark:border-slate-600 text-slate-600 dark:text-slate-400"
+              className="text-xs border-white/30 dark:border-white/20 text-white/80 dark:text-white/70 bg-white/5 dark:bg-white/5"
             >
               {tag}
             </Badge>
           ))}
         </div>
 
-       <Link target="blank" href={article.link}>
-        <CleanButton variant="ghost" className="text-sm px-4 py-2">
-          Read More
-          <ArrowUpRight className="w-3 h-3 ml-1" />
-        </CleanButton>
-       </Link>
+        <Link target="blank" href={article.link}>
+          <CleanButton variant="ghost" className="text-sm px-4 py-2">
+            Read More
+            <ArrowUpRight className="w-3 h-3 ml-1" />
+          </CleanButton>
+        </Link>
       </div>
-    </motion.article>
+    </article>
   )
 }
 
-// Call Stack Card Component
 const CallStackCard = ({ project, index, totalCards }: { project: any; index: number; totalCards: number }) => {
   const cardRef = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: cardRef,
-    offset: ["start end", "end start"],
-  })
+  const [blur, setBlur] = useState(0)
 
-  const y = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [100, 0, 0, -index * 15])
-  const scale = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.9, 1, 1, 0.95 - index * 0.02])
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0.8])
-  const zIndex = useTransform(scrollYProgress, [0, 0.8, 1], [index + 1, index + 1, totalCards + index])
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!cardRef.current) return
+      const rect = cardRef.current.getBoundingClientRect()
+      const viewportCenter = window.innerHeight / 2
+      const distanceFromCenter = Math.abs(rect.top - viewportCenter)
+      const maxDistance = window.innerHeight
+
+      const blurAmount = Math.max(0, Math.min(12, (distanceFromCenter / maxDistance) * 12))
+      setBlur(blurAmount)
+    }
+
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    handleScroll()
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   return (
-    <motion.div ref={cardRef} style={{ y, scale, opacity, zIndex }} className="sticky top-32 w-full px-4 sm:px-6">
-      <motion.div
-        className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-xl transition-shadow duration-300"
-        whileHover={{ y: -5 }}
+    <div ref={cardRef} className="sticky top-32 w-full px-4 sm:px-6 z-10">
+      <div
+        className="bg-black/50 dark:bg-black/60 backdrop-blur-2xl border border-white/20 dark:border-white/15 rounded-3xl p-8 sm:p-10 shadow-2xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
+        style={{
+          backdropFilter: `blur(${blur}px)`,
+        }}
       >
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-center">
-          {/* Text section */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
           <div>
-            <div className="flex flex-wrap items-center gap-3 mb-4 sm:mb-6">
-              <span className="text-sm font-mono text-gray-500 bg-gray-100 dark:bg-gray-800 px-3 py-1 rounded-full">
+            <div className="flex flex-wrap items-center gap-3 mb-6 sm:mb-8">
+              <span className="text-sm font-mono text-white/80 bg-white/10 dark:bg-white/5 backdrop-blur-sm px-4 py-2 rounded-full border border-white/30 dark:border-white/20 font-black">
                 {project.year}
               </span>
               <div className="flex flex-wrap gap-2">
                 {project.tags.map((tag: string, tagIndex: number) => (
-                  <Badge key={tagIndex} variant="secondary" className="text-xs">
+                  <Badge
+                    key={tagIndex}
+                    variant="secondary"
+                    className="text-xs bg-white/15 dark:bg-white/10 text-white dark:text-white/90 backdrop-blur-sm border-white/40 dark:border-white/20 font-black"
+                  >
                     {tag}
                   </Badge>
                 ))}
               </div>
             </div>
 
-            <h3 className="text-2xl sm:text-3xl md:text-4xl font-light mb-3 sm:mb-4 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
+            <h3 className="text-4xl sm:text-5xl md:text-6xl font-black mb-4 sm:mb-6 text-white dark:text-white leading-tight tracking-tight">
               {project.title}
             </h3>
 
-            <p className="text-gray-600 dark:text-gray-300 mb-6 sm:mb-8 text-base sm:text-lg leading-relaxed">
+            <p className="text-white/80 dark:text-white/75 mb-8 sm:mb-10 text-lg sm:text-xl leading-relaxed font-bold">
               {project.description}
             </p>
 
@@ -538,36 +442,24 @@ const CallStackCard = ({ project, index, totalCards }: { project: any; index: nu
             </div>
           </div>
 
-          {/* Image section */}
           <div className="relative w-full">
-            <motion.div
-              whileHover={{ scale: 1.02, rotate: 1 }}
-              transition={{ duration: 0.3 }}
-              className="aspect-[4/3] bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-inner flex items-center justify-center"
-            >
+            <div className="aspect-[4/3] bg-white/10 dark:bg-white/5 backdrop-blur-md rounded-2xl overflow-hidden shadow-2xl border border-white/30 dark:border-white/20 flex items-center justify-center hover:scale-105 transition-transform duration-300">
               <img
                 src={project.image || "/placeholder.svg"}
                 alt={project.title}
                 className="w-full h-full object-contain"
               />
-            </motion.div>
+            </div>
 
-            <div className="absolute -top-2 -right-2 bg-black dark:bg-white text-white dark:text-black text-xs font-mono px-2 py-1 rounded-full">
+            <div className="absolute -top-3 -right-3 bg-white dark:bg-white text-black dark:text-black text-xs font-mono px-3 py-2 rounded-full font-black shadow-lg">
               {String(index + 1).padStart(2, "0")}
             </div>
           </div>
         </div>
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   )
 }
-
-
-
-
-
- 
-
 
 export default function Portfolio() {
   const [currentTime, setCurrentTime] = useState("")
@@ -592,7 +484,7 @@ export default function Portfolio() {
       title: "Expense tracker",
       year: "2025",
       description:
-        "A scalable and modern expense tracker application with complete authentication, data caching,email job processing, and analytics using cutting-edge technologies like Redis, RabbitMQ, MongoDB, and React.",
+        "A scalable and modern expense tracker application with complete authentication, data caching, email job processing, and analytics using cutting-edge technologies like Redis, RabbitMQ, MongoDB, and React.",
       image: "/expense.png",
       tags: ["React.js", "Redis", "Node.js", "Chart.js"],
       demo: "https://expanse-tracker-redis.netlify.app/",
@@ -622,7 +514,7 @@ export default function Portfolio() {
       title: "Fast Fact Pizza",
       year: "2024",
       description:
-        "Built with React and React Router v6 for seamless SPA navigation, using Redux Toolkit forefficient state management and Tailwind CSS for responsive styling. Node.js handles backend API integration and data flow.",
+        "Built with React and React Router v6 for seamless SPA navigation, using Redux Toolkit for efficient state management and Tailwind CSS for responsive styling. Node.js handles backend API integration and data flow.",
       image: "/pizza.png",
       tags: ["React.js", "Tailwind CSS", "React-Router", "API Integration"],
       demo: "https://fast-react-pizza-v3.netlify.app/",
@@ -634,20 +526,20 @@ export default function Portfolio() {
     {
       title: "The Ultimate React + TypeScript Cheatsheet: A Practical Guide for Every Developer",
       excerpt:
-        "Whether you’re just starting with TypeScript in React or need a quick refresher, this cheatsheet is your go-to guide to master the essentials.",
+        "Whether you're just starting with TypeScript in React or need a quick refresher, this cheatsheet is your go-to guide to master the essentials.",
       date: "Jun 26, 2024",
       readTime: "3 min read",
       tags: ["Typescript", "React", "Tutorial"],
-      link:"https://medium.com/@priyanshu108tiwari/the-ultimate-react-typescript-cheatsheet-a-practical-guide-for-every-developer-a2e3935c8f20"
+      link: "https://medium.com/@priyanshu108tiwari/the-ultimate-react-typescript-cheatsheet-a-practical-guide-for-every-developer-a2e3935c8f20",
     },
     {
       title: "React Interview Questions You Must Know as a Web Developer (2025 Edition) Part-1",
       excerpt:
-        "Walk you through the top React interview questions and answers, starting from the basics and progressing to advanced topics. By the end, you’ll have a solid understanding of what interviewers are looking for.",
+        "Walk you through the top React interview questions and answers, starting from the basics and progressing to advanced topics. By the end, you'll have a solid understanding of what interviewers are looking for.",
       date: "Nov 28, 2024",
       readTime: "6 min read",
       tags: ["React", "Interviews", "Questions"],
-      link:"https://medium.com/@priyanshu108tiwari/react-interview-questions-you-must-know-as-a-web-developer-2025-edition-part-1-73edcc1d227d"
+      link: "https://medium.com/@priyanshu108tiwari/react-interview-questions-you-must-know-as-a-web-developer-2025-edition-part-1-73edcc1d227d",
     },
   ]
 
@@ -669,150 +561,106 @@ export default function Portfolio() {
   ]
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100 grid-background">
+    <div className="relative min-h-screen bg-white dark:bg-black text-white dark:text-white grid-background">
       <CustomCursor />
       <FloatingElements />
 
-      {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-40 bg-slate-50/95 dark:bg-slate-900/95 backdrop-blur-sm border-b border-slate-200 dark:border-slate-700">
+      <header className="  fixed top-0 left-0 right-0 z-40 bg-black/80 dark:bg-black/90 backdrop-blur-xl border-b border-white/10 rounded-2xl dark:border-white/10 mx-3">
         <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="font-semibold text-slate-900 dark:text-slate-100"
-          >
-            Priyanshu Tiwari
-          </motion.div>
+          <div className="font-black text-xl text-white dark:text-white tracking-tight">Priyanshu Tiwari</div>
 
           <nav className="hidden md:flex space-x-8">
-            {["Work", "Articles", "About", "Contact"].map((item, index) => (
-              <motion.a
+            {["Work", "Articles", "About", "Contact"].map((item) => (
+              <a
                 key={item}
                 href={`#${item.toLowerCase()}`}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                className="text-sm text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"
+                className="text-sm text-white/60 dark:text-white/50 hover:text-white dark:hover:text-white transition-colors font-bold"
                 data-magnetic
               >
                 {item}
-              </motion.a>
+              </a>
             ))}
           </nav>
 
           <div className="flex items-center gap-4">
-            {/* <ThemeToggle /> */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="text-sm text-slate-500 dark:text-slate-400 font-mono"
-            >
-              IST {currentTime}
-            </motion.div>
+            <div className="text-sm text-white/50 dark:text-white/40 font-black">IST {currentTime}</div>
           </div>
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="pt-32 pb-20 px-6 relative z-10">
+      <section className="relative z-10 pt-32 pb-20 px-6">
         <div className="max-w-6xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="mb-8"
-          >
-            <div className="inline-flex items-center gap-2 bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 px-4 py-2 rounded-full text-sm font-medium mb-8">
-              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+          <div className="mb-8">
+            <div className="inline-flex liquid-bg items-center gap-2 bg-white/10 dark:bg-white/5 text-white dark:text-white px-4 py-2 rounded-full text-sm font-black mb-8 border border-white/20 dark:border-white/10 backdrop-blur-md">
+              <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
               Open to opportunities
             </div>
 
-            <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-6 text-slate-900 dark:text-slate-100">
+            <h1 className="text-6xl md:text-7xl lg:text-8xl font-black leading-tight mb-6 text-white dark:text-white tracking-tight">
               The interactive{" "}
               <span className="relative">
                 full-stack
-                <motion.div
-                  initial={{ width: 0 }}
-                  animate={{ width: "100%" }}
-                  transition={{ delay: 1, duration: 1 }}
-                  className="absolute bottom-2 left-0 h-1 bg-green-300 -z-10"
-                />
+                <div className="absolute bottom-2 left-0 h-2 bg-white/40 -z-10" style={{ width: "100%" }} />
               </span>{" "}
               developer
             </h1>
 
-            <p className="text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto mb-12 leading-relaxed">
-              Bridge between a failing system and a working solution: Where
-                creativity meets functionality, and innovation drives progress.
+            <p className="text-xl md:text-2xl text-white/70 dark:text-white/60 max-w-3xl mx-auto mb-12 leading-relaxed font-bold">
+              Bridge between a failing system and a working solution: Where creativity meets functionality, and
+              innovation drives progress.
             </p>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-            >
-              <CleanButton variant="accent" className="px-8 py-4 text-base" href="/#work">
-               My Projects
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <CleanButton variant="liquid" className="px-8 py-4 text-base font-black" href="/#work">
+                My Projects
               </CleanButton>
-              <CleanButton variant="outline" className="px-8 py-4 text-base" href="#contact">
+              <CleanButton variant="liquid" className="px-8 py-4 text-base font-black" href="#contact">
                 Let's Connect
               </CleanButton>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
 
-          {/* Tech Stack */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8 }}
-            className="flex flex-wrap justify-center gap-6 mt-16"
-          >
+          {/* Tech Stack Grid */}
+          <div className="flex flex-wrap justify-center gap-6 mt-16">
             {[
               { icon: <Code className="w-5 h-5" />, name: "Frontend" },
               { icon: <Database className="w-5 h-5" />, name: "Backend" },
               { icon: <Palette className="w-5 h-5" />, name: "Design" },
               { icon: <Globe className="w-5 h-5" />, name: "Full-Stack" },
-            ].map((item, index) => (
-              <motion.div
+            ].map((item) => (
+              <div
                 key={item.name}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1 + index * 0.1 }}
-                className="flex items-center gap-3 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-4 py-3 rounded-lg shadow-sm"
+                className="flex liquid-bg  items-center gap-3 bg-black/40 dark:bg-black/50 border border-white/20 dark:border-white/15 px-6 py-4 rounded-xl shadow-lg backdrop-blur-xl hover:scale-105 transition-transform duration-300"
               >
-                <div className="text-slate-600 dark:text-slate-400">{item.icon}</div>
-                <span className="text-sm font-medium text-slate-700 dark:text-slate-300">{item.name}</span>
-              </motion.div>
+                <div className="text-white dark:text-white">{item.icon}</div>
+                <span className="text-sm font-black text-white dark:text-white">{item.name}</span>
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Work Section */}
-      <section id="work" className="py-20 px-6">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-16 text-center"
-          >
-            <h2 className="text-4xl md:text-6xl font-light mb-4">Selected Work</h2>
-            <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-8">
+      <section id="work" className="relative z-10 py-32 px-6 min-h-screen flex flex-col justify-center">
+        <div className="max-w-7xl mx-auto w-full">
+          <div className="mb-16 text-center">
+            <h2 className="text-5xl md:text-7xl font-black mb-6 text-white dark:text-white tracking-tight">
+              Selected Work
+            </h2>
+            <p className="text-white/60 dark:text-white/50 max-w-2xl mx-auto mb-8 text-lg font-bold">
               A collection of projects that showcase my approach to solving complex design and development challenges.
             </p>
 
-            <div className="flex items-center justify-center gap-4 text-sm font-mono text-gray-500 dark:text-gray-400">
+            <div className="flex items-center justify-center gap-4 text-sm font-mono text-white/40 dark:text-white/30">
               <div className="flex flex-col items-center">
-                <div className="w-8 h-1 bg-black dark:bg-white mb-1"></div>
-                <div className="w-8 h-1 bg-gray-500 mb-1"></div>
-                <div className="w-8 h-1 bg-gray-400 mb-1"></div>
-                <div className="w-8 h-1 bg-gray-300"></div>
+                <div className="w-8 h-1 bg-white mb-1"></div>
+                <div className="w-8 h-1 bg-white/70 mb-1"></div>
+                <div className="w-8 h-1 bg-white/50 mb-1"></div>
+                <div className="w-8 h-1 bg-white/30"></div>
               </div>
-              <span>Call Stack (LIFO)</span>
+              <span className="text-white/50">Call Stack (LIFO)</span>
             </div>
-          </motion.div>
+          </div>
 
           <div className="relative">
             <div className="space-y-8">
@@ -824,20 +672,16 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Articles Section */}
-      <section id="articles" className="py-20 px-6 relative z-10">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-slate-900 dark:text-slate-100">Latest Articles</h2>
-            <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+      <section id="articles" className="relative z-10 py-32 px-6 min-h-screen flex flex-col justify-center">
+        <div className="max-w-6xl mx-auto w-full">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl md:text-6xl font-black mb-6 text-white dark:text-white tracking-tight">
+              Latest Articles
+            </h2>
+            <p className="text-lg text-white/60 dark:text-white/50 max-w-2xl mx-auto font-bold">
               Sharing my learning journey and insights about web development, programming, and technology.
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid md:grid-cols-2 gap-8">
             {articles.map((article, index) => (
@@ -845,86 +689,60 @@ export default function Portfolio() {
             ))}
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mt-12"
-          >
+          <div className="text-center mt-12">
             <Link target="blank" href="https://medium.com/@priyanshu108tiwari">
-            <CleanButton variant="outline">
-              View All Articles
-              <ArrowUpRight className="w-4 h-4 ml-2" />
-            </CleanButton>
+              <CleanButton variant="liquid">
+                View All Articles
+                <ArrowUpRight className="w-4 h-4 ml-2" />
+              </CleanButton>
             </Link>
-          </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* About Section */}
-      <section id="about" className="py-20 px-6 relative z-10">
-        <div className="max-w-6xl mx-auto ">
+      <section id="about" className="relative z-10 py-32 px-6 min-h-screen flex flex-col justify-center">
+        <div className="max-w-6xl mx-auto w-full">
           <div className="grid lg:grid-cols-2 gap-16">
-            <div>
-              <motion.h2
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="text-4xl md:text-5xl font-bold mb-8 text-slate-900 dark:text-slate-100"
-              >
+            <div className="liquid-bg  bg-black/40 dark:bg-black/50 backdrop-blur-xl border border-white/20 dark:border-white/15 rounded-3xl p-8">
+              <h2 className="text-5xl md:text-6xl font-black mb-8 text-white dark:text-white tracking-tight">
                 About Me
-              </motion.h2>
+              </h2>
 
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
-                className="space-y-6 text-slate-600 dark:text-slate-300 leading-relaxed"
-              >
+              <div className="space-y-6 text-white/70 dark:text-white/60 leading-relaxed font-bold">
                 <p>
-                Hi, I’m Priyanshu — a full-stack developer with a strong focus on frontend development. I have 3+ years of experience building modern, scalable web applications using React.js, Next.js, TypeScript, and Node.js. 
-                 I enjoy crafting clean, responsive UIs with a strong emphasis on user experience, performance optimization, and maintainable code.
+                  Hi, I'm Priyanshu — a full-stack developer with a strong focus on frontend development. I have 3+
+                  years of experience building modern, scalable web applications using React.js, Next.js, TypeScript,
+                  and Node.js. I enjoy crafting clean, responsive UIs with a strong emphasis on user experience,
+                  performance optimization, and maintainable code.
                 </p>
                 <p>
-                 On the backend, I’ve built APIs using Express.js, implemented JWT-based authentication, and handled asynchronous jobs using Redis and RabbitMQ. I also work with MongoDB for data modeling and persistence.
+                  On the backend, I've built APIs using Express.js, implemented JWT-based authentication, and handled
+                  asynchronous jobs using Redis and RabbitMQ. I also work with MongoDB for data modeling and
+                  persistence.
                 </p>
                 <p>
-                  I’m passionate about building products that are both functional and enjoyable to use — and I’m always looking to improve how I write code, structure systems, and collaborate with teams.
+                  I'm passionate about building products that are both functional and enjoyable to use — and I'm always
+                  looking to improve how I write code, structure systems, and collaborate with teams.
                 </p>
-              </motion.div>
+              </div>
             </div>
 
-            <div>
-              <motion.h3
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="text-2xl font-semibold mb-8 text-slate-900 dark:text-slate-100"
-              >
-                My Journey
-              </motion.h3>
+            <div className="bg-black/40 liquid-bg  dark:bg-black/50 backdrop-blur-xl border border-white/20 dark:border-white/15 rounded-3xl p-8">
+              <h3 className="text-3xl font-black mb-8 text-white dark:text-white">My Journey</h3>
 
               <div className="space-y-8">
                 {experience.map((exp, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                    className="border-l-2 border-green-300 pl-6 relative"
-                  >
-                    <div className="absolute -left-2 top-0 w-4 h-4 bg-green-300 rounded-full"></div>
+                  <div key={index} className="border-l-2 border-white/40 pl-6 relative">
+                    <div className="absolute -left-2 top-0 w-4 h-4 bg-white rounded-full"></div>
                     <div className="flex justify-between items-start mb-2">
-                      <h4 className="font-semibold text-slate-900 dark:text-slate-100">{exp.role}</h4>
-                      <span className="text-sm text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">
+                      <h4 className="font-black text-white dark:text-white text-lg">{exp.role}</h4>
+                      <span className="text-sm text-white/50 dark:text-white/40 bg-white/10 dark:bg-white/5 px-3 py-1 rounded-full border border-white/20 dark:border-white/10 font-mono font-black">
                         {exp.period}
                       </span>
                     </div>
-                    <p className="text-slate-700 dark:text-slate-300 mb-2 font-medium">{exp.company}</p>
-                    <p className="text-sm text-slate-600 dark:text-slate-400">{exp.description}</p>
-                  </motion.div>
+                    <p className="text-white dark:text-white/90 mb-2 font-black">{exp.company}</p>
+                    <p className="text-sm text-white/60 dark:text-white/50 font-bold">{exp.description}</p>
+                  </div>
                 ))}
               </div>
             </div>
@@ -932,66 +750,58 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="py-20 px-6 relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold mb-8 text-slate-900 dark:text-slate-100"
-          >
+      <section id="contact" className="relative z-10 py-32 px-6 min-h-screen flex flex-col justify-center">
+        <div className="liquid-bg  max-w-4xl mx-auto w-full text-center bg-black/40 dark:bg-black/50 backdrop-blur-xl border border-white/20 dark:border-white/15 rounded-3xl p-12">
+          <h2 className="text-5xl md:text-6xl font-black mb-8 text-white dark:text-white tracking-tight">
             Let's Connect
-          </motion.h2>
+          </h2>
 
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto mb-12"
-          >
+          <p className="text-lg md:text-xl text-white/60 dark:text-white/50 max-w-2xl mx-auto mb-12 font-bold">
             I'm always excited to discuss new opportunities, collaborate on interesting projects, or just chat about
             technology and development.
-          </motion.p>
+          </p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4 }}
-            className="flex justify-center gap-6 mb-12"
-          >
-            <CleanButton variant="accent" className="px-8 py-4 text-base" href="mailto:priyanshu108tiwari@gmail.com">
+          <div className="flex justify-center gap-6 mb-12">
+            <CleanButton
+              variant="liquid"
+              className="px-8 py-4 text-base font-black"
+              href="mailto:priyanshu108tiwari@gmail.com"
+            >
               Get In Touch
             </CleanButton>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.6 }}
-            className="flex justify-center gap-8"
-          >
+          <div className="flex justify-center gap-8">
             {[
               { icon: <Github className="w-5 h-5" />, label: "GitHub", href: "https://github.com/priyanshtiwari001" },
-              { icon: <Linkedin className="w-5 h-5" />, label: "LinkedIn", href: "https://linkedin.com/in/priyanshtiwari001" },
+              {
+                icon: <Linkedin className="w-5 h-5" />,
+                label: "LinkedIn",
+                href: "https://linkedin.com/in/priyanshtiwari001",
+              },
               { icon: <Mail className="w-5 h-5" />, label: "Email", href: "mailto:priyanshu108tiwari@gmail.com" },
             ].map((social, index) => (
-              <CleanButton target="blank" key={index} variant="ghost" className="p-4" href={social.href} aria-label={social.label}>
+              <CleanButton
+                target="blank"
+                key={index}
+                variant="ghost"
+                className="p-4"
+                href={social.href}
+                aria-label={social.label}
+              >
                 {social.icon}
               </CleanButton>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-8 px-6 border-t border-slate-200 dark:border-slate-700 relative z-10">
+      <footer className="relative liquid-bg  z-10 py-8 px-6 border-t border-white/10 dark:border-white/10 bg-black/40 dark:bg-black/50 backdrop-blur-xl">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-slate-500 dark:text-slate-400">© 2025 Priyanshu Tiwari. All rights reserved.</p>
-          <p className="text-sm text-slate-500 dark:text-slate-400">Built with Next.js & Framer Motion</p>
+          <p className="text-sm text-white/50 dark:text-white/40 font-bold">
+            © 2025 Priyanshu Tiwari. All rights reserved.
+          </p>
+          <p className="text-sm text-white/50 dark:text-white/40 font-bold">Built with Next.js & Tailwind CSS</p>
         </div>
       </footer>
     </div>

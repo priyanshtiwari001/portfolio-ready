@@ -2,7 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
-
+import CatFollower from "./components/cat-follow"
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
@@ -18,8 +18,8 @@ export const metadata: Metadata = {
     description: "Creating exceptional digital experiences",
     type: "website",
   },
-  icons:{
-    icon:'/logo.png'
+  icons: {
+    icon: '/logo.png'
   }
 }
 
@@ -30,7 +30,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={inter.variable}>
-      <body className={`${inter.className} antialiased`}>{children}</body>
+      <body className={`${inter.className} antialiased`}>{children}
+        <CatFollower />
+      </body>
     </html>
   )
 }
